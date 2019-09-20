@@ -23,6 +23,7 @@ ngrok http localhost:5000
 
 oc new-project shadowman-the-bot
 oc import-image rhscl/mongodb-36-rhel7 --from=registry.access.redhat.com/rhscl/mongodb-36-rhel7 --confirm
+oc create -f deployments/secrets.yaml
 oc create -f deployments/build-bot.yaml
 oc create -f deployments/deploy-mongodb.yaml
 oc create -f deployments/deploy-bot.yaml

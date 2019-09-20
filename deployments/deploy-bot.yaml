@@ -54,7 +54,9 @@ items:
                 secretKeyRef:
                   key: database-name
                   name: shadowman-the-bot-secrets
-            
+            - name: DATABASE_SERVICE_NAME
+              value: 'mongodb'
+              
             - name: SLACK_CLIENT_ID
               valueFrom:
                 secretKeyRef:
@@ -68,8 +70,8 @@ items:
             
             - name: RACK_ENV
               value: 'production'
-            - name: DATABASE_SERVICE_NAME
-              value: 'mongodb'
+            - name: LOG_LEVEL
+              value: 'warn'
               
             image: ''
             name: shadowman-the-bot

@@ -45,9 +45,6 @@ items:
                 secretKeyRef:
                   key: database-name
                   name: shadowman-the-bot-secrets
-                  
-            - name: DATABASE_SERVICE_NAME
-              value: 'mongodb'
             
             image: ' '
             name: mongodb
