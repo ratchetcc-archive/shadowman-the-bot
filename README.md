@@ -26,3 +26,6 @@ ngrok http localhost:5000
 * https://github.com/mickuehl/slack-ruby-bot-server
 * https://github.com/puma/puma
 * https://docs.mongodb.com/mongoid/current/tutorials/mongoid-configuration/
+
+
+-e MONGO_INITDB_ROOT_USERNAME=shadowman -e MONGO_INITDB_ROOT_PASSWORD=shadowman
