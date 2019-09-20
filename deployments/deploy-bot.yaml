@@ -15,7 +15,16 @@ items:
     selector:
       name: shadowman-the-bot
     strategy:
-      type: Recreate
+      type: Rolling
+      #rollingParams:
+      #  updatePeriodSeconds: 1 
+      #  intervalSeconds: 1 
+      #  timeoutSeconds: 120 
+      #  maxSurge: "20%" 
+      #  maxUnavailable: "10%" 
+      #  pre: {} 
+      #  post: {}
+        
     template:
       metadata:
         name: shadowman-the-bot
@@ -41,12 +50,11 @@ items:
                   key: database-admin-password
                   name: shadowman-the-bot-secrets
             - name: MONGODB_DATABASE
-              value: 'mongodb'
-            - name: DATABASE_SERVICE_NAME
-              value: 'mongodb'
-            - name: MONGODB_URL # mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[database][?options]]
-              value: "mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@${DATABASE_SERVICE_NAME}/${MONGODB_DATABASE}"
-
+              valueFrom:
+                secretKeyRef:
+                  key: database-name
+                  name: shadowman-the-bot-secrets
+            
             - name: SLACK_CLIENT_ID
               valueFrom:
                 secretKeyRef:
@@ -60,7 +68,9 @@ items:
             
             - name: RACK_ENV
               value: 'production'
-            
+            - name: DATABASE_SERVICE_NAME
+              value: 'mongodb'
+              
             image: ''
             name: shadowman-the-bot
             ports:

@@ -41,7 +41,11 @@ items:
                   key: database-admin-password
                   name: shadowman-the-bot-secrets
             - name: MONGODB_DATABASE
-              value: 'mongodb'
+              valueFrom:
+                secretKeyRef:
+                  key: database-name
+                  name: shadowman-the-bot-secrets
+                  
             - name: DATABASE_SERVICE_NAME
               value: 'mongodb'
             
