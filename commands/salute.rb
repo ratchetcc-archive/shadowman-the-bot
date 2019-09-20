@@ -12,3 +12,9 @@ class Salute < SlackRubyBot::Commands::Base
   end
 
 end
+
+class Market < SlackRubyBot::Bot
+  scan(/([A-Z]{2,5})/) do |client, data, stocks|
+    # lookup stock market price
+  end
+end
