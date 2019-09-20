@@ -36,7 +36,7 @@ items:
       
     source:
       git:
-        uri: https://github.com/ratchetcc/shadowman-the-bot
+        uri: https://github.com/mickuehl/shadowman-the-bot
         ref: master
       type: Git
     
