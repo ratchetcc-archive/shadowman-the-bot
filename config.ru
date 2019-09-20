@@ -6,6 +6,7 @@ Bundler.require :default
 
 require_relative 'commands'
 
+puts "DB -> '#{ENV['MONGODB_DATABASE']}'"
 puts "URI -> '#{ENV['MONGODB_URL']}'"
 
 Mongoid.load!(File.expand_path('config/mongoid.yml', __dir__), ENV['RACK_ENV'])

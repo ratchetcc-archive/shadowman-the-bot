@@ -16,8 +16,6 @@ items:
       name: shadowman-the-bot
     strategy:
       type: Recreate
-      recreateParams:
-        
     template:
       metadata:
         name: shadowman-the-bot
