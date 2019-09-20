@@ -47,10 +47,7 @@ items:
             - name: DATABASE_SERVICE_NAME
               value: 'mongodb'
             - name: MONGODB_URL # mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[database][?options]]
-              value: 'mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@${DATABASE_SERVICE_NAME}/${MONGODB_DATABASE}'
-
-            - name: PORT
-              value: '5000'
+              value: "mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@${DATABASE_SERVICE_NAME}/${MONGODB_DATABASE}"
 
             - name: SLACK_CLIENT_ID
               valueFrom:
@@ -69,7 +66,7 @@ items:
             image: ''
             name: shadowman-the-bot
             ports:
-              - containerPort: ${PORT}
+              - containerPort: 8080
 
             #livenessProbe:
             #  httpGet:
@@ -112,8 +109,8 @@ items:
   spec:
     ports:
       - name: web
-        port: ${PORT}
-        targetPort: ${PORT}
+        port: 8080
+        targetPort: 8080
     selector:
       name: shadowman-the-bot
 
