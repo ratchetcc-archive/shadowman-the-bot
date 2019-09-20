@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: List
+items:
+
+- kind: ImageStream
+  apiVersion: 'v1'
+  metadata:
+    annotations:
+      description: shadowman-the-bot bot
+      tags: ruby, slack
+    labels:
+      app: shadowman-the-bot
+    name: shadowman-the-bot
+
+- kind: BuildConfig
+  apiVersion: 'v1'
+  metadata:
+    labels:
+      app: shadowman-the-bot
+    name: shadowman-the-bot
+  spec:
+    successfulBuildsHistoryLimit: 2
+    failedBuildsHistoryLimit: 1
+    runPolicy: 'Serial' 
+    
+    triggers:
+    - github:
+        secret: shadowman-the-bot
+      type: GitHub
+    - generic:
+        secret: shadowman-the-bot
+      type: Generic
+    - type: ConfigChange
+    - imageChange: {}
+      type: ImageChange
+      
+    source:
+      git:
+        uri: https://github.com/ratchetcc/shadowman-the-bot
+        ref: master
+      type: Git
+    
+    strategy:
+      sourceStrategy:
+        env:
+          - name: MONGODB_USER
+            valueFrom:
+              secretKeyRef:
+                key: database-user
+                name: shadowman-the-bot-secrets
+          - name: MONGODB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: shadowman-the-bot-secrets
+          - name: MONGODB_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-admin-password
+                name: shadowman-the-bot-secrets
+          - name: MONGODB_DATABASE
+            value: 'mongodb'
+          - name: DATABASE_SERVICE_NAME
+            value: 'mongodb'
+          - name: MONGODB_URL # mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[database][?options]]
+            value: 'mongodb://${MONGODB_USER}:${MONGODB_PASSWORD}@${DATABASE_SERVICE_NAME}/${MONGODB_DATABASE}'
+
+        from:
+          kind: ImageStreamTag
+          namespace: openshift
+          name: 'ruby:2.5'
+          
+      type: Source
+        
+    output:
+      to:
+        kind: ImageStreamTag
+        name: 'shadowman-the-bot:latest'
