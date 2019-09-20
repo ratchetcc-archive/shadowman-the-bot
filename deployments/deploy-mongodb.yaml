@@ -73,7 +73,8 @@ items:
             - mongodb
           from:
             kind: ImageStreamTag
-            name: 'mongodb:3.6'
+            #name: 'mongodb:3.6'
+            name: 'mongodb-36-rhel7'
             namespace: 'openshift'
         type: ImageChange
 
