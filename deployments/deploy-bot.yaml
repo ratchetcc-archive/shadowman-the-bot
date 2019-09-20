@@ -116,7 +116,7 @@ items:
       app: shadowman-the-bot
   spec:
     ports:
-      - name: web
+      - name: bot
         port: 8080
         targetPort: 8080
     selector:
@@ -125,7 +125,9 @@ items:
 - apiVersion: v1
   kind: Route
   metadata:
-    name: www
+    name: bot
+    annotations:
+      kubernetes.io/tls-acme: "true"
     labels:
       app: shadowman-the-bot
   spec:

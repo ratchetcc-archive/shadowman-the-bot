@@ -3,6 +3,8 @@ RHTE 2019 Hackathon
 
 ## Setup
 
+### Local development
+
 ```bash
 
 bundle install
@@ -10,14 +12,20 @@ bundle install
 docker create --name shadow-db -p 27017:27017 mongo:3.6
 docker start shadow-db
 
+foreman start
+ngrok http localhost:5000
+
 ```
 
-## Start
+## Deploy to Red Hat OpenShift
 
 ```bash
 
-foreman start
-ngrok http localhost:5000
+oc new-project shadowman-the-bot
+oc import-image rhscl/mongodb-36-rhel7 --from=registry.access.redhat.com/rhscl/mongodb-36-rhel7 --confirm
+oc create -f deployments/build-bot.yaml
+oc create -f deployments/deploy-mongodb.yaml
+oc create -f deployments/deploy-bot.yaml
 
 ```
 
@@ -26,6 +34,3 @@ ngrok http localhost:5000
 * https://github.com/mickuehl/slack-ruby-bot-server
 * https://github.com/puma/puma
 * https://docs.mongodb.com/mongoid/current/tutorials/mongoid-configuration/
-
-
--e MONGO_INITDB_ROOT_USERNAME=shadowman -e MONGO_INITDB_ROOT_PASSWORD=shadowman

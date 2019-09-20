@@ -16,14 +16,8 @@ Bundler.require :default
 Mongoid.configure do |config|
   config.clients.default = {
     uri: MONGODB_URL,
-    #hosts: [ENV['DATABASE_SERVICE_NAME']],
-    #database: ENV['MONGODB_DATABASE'],
-    #user: ENV['MONGODB_USER'],
-    #password: ENV['MONGODB_PASSWORD'],
   }
-
-
-  config.log_level = :warn
+  config.log_level = ENV['LOG_LEVEL'].to_sym
 end
 
 # load the commands

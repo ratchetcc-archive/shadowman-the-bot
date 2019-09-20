@@ -25,10 +25,10 @@ items:
     
     triggers:
     - github:
-        secret: shadowman-the-bot
+        secret: shadowman
       type: GitHub
     - generic:
-        secret: shadowman-the-bot
+        secret: shadowman
       type: Generic
     - type: ConfigChange
     - imageChange: {}
