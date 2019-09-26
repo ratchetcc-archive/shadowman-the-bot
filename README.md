@@ -18,7 +18,18 @@ docker start shadow-redis
 
 ## Deploy to Red Hat OpenShift
 
-TBD
+```bash
+
+oc new-project shadowman-the-bot
+
+oc import-image rhscl/redis-5-rhel7 --from=registry.access.redhat.com/rhscl/redis-5-rhel7 --confirm
+
+oc create -f deployments/secrets.yaml
+oc create -f deployments/build-bot.yaml
+oc create -f deployments/deploy-mongodb.yaml
+oc create -f deployments/deploy-bot.yaml
+
+```
 
 ## Reference
 
