@@ -33,10 +33,14 @@ oc create -f deployments/deploy-bot.yaml
 
 ## Reference
 
+### Slack
 * https://api.slack.com/apps
 
+### Lita
 * https://github.com/litaio/lita
 * https://github.com/litaio/lita-slack
 * https://docs.lita.io/plugin-authoring/handlers/
 
+### Containers
+* https://github.com/sclorg/s2i-ruby-container
 * https://hub.docker.com/_/redis/?tab=description

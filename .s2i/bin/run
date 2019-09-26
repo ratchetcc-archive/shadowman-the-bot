@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "---> Starting the bot"
+exec bundle exec "lita start"
+
+#while true
+#do
+#	echo "..."
+#	sleep 10
+#done
