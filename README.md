@@ -5,33 +5,27 @@ RHTE 2019 Hackathon
 
 ### Local development
 
+
 ```bash
 
 bundle install
 
-docker create --name shadow-db -p 27017:27017 mongo:3.6
-docker start shadow-db
+docker create --name shadow-redis -p 6379:6379 redis:5.0.6-alpine
+docker start shadow-redis
 
-foreman start
-ngrok http localhost:5000
 
 ```
 
 ## Deploy to Red Hat OpenShift
 
-```bash
-
-oc new-project shadowman-the-bot
-oc import-image rhscl/mongodb-36-rhel7 --from=registry.access.redhat.com/rhscl/mongodb-36-rhel7 --confirm
-oc create -f deployments/secrets.yaml
-oc create -f deployments/build-bot.yaml
-oc create -f deployments/deploy-mongodb.yaml
-oc create -f deployments/deploy-bot.yaml
-
-```
+TBD
 
 ## Reference
 
-* https://github.com/mickuehl/slack-ruby-bot-server
-* https://github.com/puma/puma
-* https://docs.mongodb.com/mongoid/current/tutorials/mongoid-configuration/
+* https://api.slack.com/apps
+
+* https://github.com/litaio/lita
+* https://github.com/litaio/lita-slack
+* https://docs.lita.io/plugin-authoring/handlers/
+
+* https://hub.docker.com/_/redis/?tab=description

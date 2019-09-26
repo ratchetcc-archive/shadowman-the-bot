@@ -1,1 +1,1 @@
-web: bundle exec puma -p $PORT
+bot: bundle exec lita start

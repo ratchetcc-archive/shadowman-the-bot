@@ -1,21 +1,17 @@
 source 'https://rubygems.org'
 
-gem 'mongoid'
-#gem 'newrelic-slack-ruby-bot'
-gem 'slack-ruby-bot-server'
+gem 'lita', '~> 4.7.1'
+gem "lita-slack", '~> 1.8.0'
 
-gem 'kaminari-mongoid'
-gem 'mongoid-scroll'
-#gem 'unicorn'
-gem 'puma'
+group :development, :test do
+  gem 'foreman'
+end
 
 group :test do
-  gem 'database_cleaner'
-  gem 'fabrication'
-  gem 'faker'
   gem 'rack-test'
   gem 'rake'
   gem 'rspec'
-  gem 'vcr'
-  gem 'webmock'
 end
+
+# custom handlers
+gem "lita-echo", :path => "handlers/lita-echo"
