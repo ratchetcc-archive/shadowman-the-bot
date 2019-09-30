@@ -39,13 +39,18 @@ items:
                 secretKeyRef:
                   key: slack-token
                   name: shadowman-the-bot-secrets
-            - name: DATABASE_SERVICE_NAME
+                  
+            - name: BOT_NAME
+              value: 'shadowman'
+
+            - name: REDIS_HOST
               value: 'redis'
-            - name: DATABASE_HOST
-              value: 'redis'
-            - name: DATABASE_PORT
+            - name: REDIS_PORT
               value: '6379'
-            
+
+            - name: LOG_LEVEL
+              value: 'info'
+
             image: ''
             name: shadowman-the-bot
             ports:
