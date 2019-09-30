@@ -36,36 +36,25 @@ items:
       
     source:
       git:
-        uri: https://github.com/mickuehl/shadowman-the-bot
+        uri: https://github.com/shadowman-the-bot/shadowman-the-bot
         ref: master
       type: Git
     
     strategy:
       sourceStrategy:
         env:
-          - name: MONGODB_USER
-            valueFrom:
-              secretKeyRef:
-                key: database-user
-                name: shadowman-the-bot-secrets
-          - name: MONGODB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: database-password
-                name: shadowman-the-bot-secrets
-          - name: MONGODB_ADMIN_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                key: database-admin-password
-                name: shadowman-the-bot-secrets
-          - name: MONGODB_DATABASE
-            valueFrom:
-              secretKeyRef:
-                key: database-name
-                name: shadowman-the-bot-secrets
-          
-          - name: DATABASE_SERVICE_NAME
-            value: 'mongodb'
+          #- name: SLACK_TOKEN
+          #  valueFrom:
+          #    secretKeyRef:
+          #      key: slack-token
+          #      name: shadowman-the-bot-secrets
+          #
+          #- name: DATABASE_HOST
+          #  value: 'redis'
+          #- name: DATABASE_PORT
+          #  value: '6379'
+          #- name: DATABASE_SERVICE_NAME
+          #  value: 'redis'
           
         from:
           kind: ImageStreamTag

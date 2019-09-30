@@ -1,5 +1,6 @@
 # shadowman-the-bot
-RHTE 2019 Hackathon
+
+Bot framework for community engagement
 
 ## Setup
 
@@ -18,15 +19,29 @@ docker start shadow-redis
 
 ## Deploy to Red Hat OpenShift
 
+### Create the pod/project
+
 ```bash
 
 oc new-project shadowman-the-bot
+oc project shadowman-the-bot
 
-oc import-image rhscl/redis-5-rhel7 --from=registry.access.redhat.com/rhscl/redis-5-rhel7 --confirm
+```
 
+### Import the Redis image stream and deploy the DB
+
+```bash
+oc import-image rhscl/redis-5-rhel7:5-14 --from=registry.redhat.io/rhscl/redis-5-rhel7:5-14 --confirm
+
+oc create -f deployments/deploy-redis.yaml
+```
+
+### Build and deploy the bot
+
+```bash
 oc create -f deployments/secrets.yaml
+
 oc create -f deployments/build-bot.yaml
-oc create -f deployments/deploy-mongodb.yaml
 oc create -f deployments/deploy-bot.yaml
 
 ```

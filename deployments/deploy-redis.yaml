@@ -25,30 +25,12 @@ items:
         containers:
           - env:
             # database, user etc
-            - name: MONGODB_USER
-              valueFrom:
-                secretKeyRef:
-                  key: database-user
-                  name: shadowman-the-bot-secrets
-            - name: MONGODB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: database-password
-                  name: shadowman-the-bot-secrets
-            - name: MONGODB_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: database-admin-password
-                  name: shadowman-the-bot-secrets
-            - name: MONGODB_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  key: database-name
-                  name: shadowman-the-bot-secrets
-                  
-            - name: DATABASE_SERVICE_NAME
-              value: 'redis'
-            
+            #- name: MONGODB_USER
+            #  valueFrom:
+            #    secretKeyRef:
+            #      key: database-user
+            #      name: shadowman-the-bot-secrets
+                              
             image: ' '
             name: redis
             ports:
@@ -64,7 +46,7 @@ items:
         volumes:
           - name: 'redis-data'
             persistentVolumeClaim:
-              claimName: 'database'
+              claimName: 'redis'
     triggers:
       - type: ConfigChange
       - imageChangeParams:
@@ -73,8 +55,8 @@ items:
             - redis
           from:
             kind: ImageStreamTag
-            name: 'rhscl/redis-5-rhel7'
-            namespace: 'openshift'
+            name: 'redis-5-rhel7:5-14'
+            #namespace: 'openshift'
         type: ImageChange
 
 - kind: Service
@@ -96,7 +78,7 @@ items:
 - kind: PersistentVolumeClaim
   apiVersion: "v1"
   metadata:
-    name: 'database'
+    name: 'redis'
   spec:
     accessModes:
       - ReadWriteOnce

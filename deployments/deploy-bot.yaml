@@ -33,44 +33,19 @@ items:
           app: shadowman-the-bot
       spec:
         containers:
-          - env:
-            - name: MONGODB_USER
+          - env:            
+            - name: SLACK_TOKEN
               valueFrom:
                 secretKeyRef:
-                  key: database-user
+                  key: slack-token
                   name: shadowman-the-bot-secrets
-            - name: MONGODB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: database-password
-                  name: shadowman-the-bot-secrets
-            - name: MONGODB_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: database-admin-password
-                  name: shadowman-the-bot-secrets
-            - name: MONGODB_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  key: database-name
-                  name: shadowman-the-bot-secrets
-            
-            - name: SLACK_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  key: slack-client-id
-                  name: shadowman-the-bot-secrets
-            - name: SLACK_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  key: slack-client-secret
-                  name: shadowman-the-bot-secrets
-            
-            - name: RACK_ENV
-              value: 'production'
             - name: DATABASE_SERVICE_NAME
-              value: 'mongodb'
-              
+              value: 'redis'
+            - name: DATABASE_HOST
+              value: 'redis'
+            - name: DATABASE_PORT
+              value: '6379'
+            
             image: ''
             name: shadowman-the-bot
             ports:
