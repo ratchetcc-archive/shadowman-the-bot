@@ -39,7 +39,11 @@ items:
                 secretKeyRef:
                   key: slack-token
                   name: shadowman-the-bot-secrets
-                  
+            - name: BOT_ADMINS
+              valueFrom:
+                secretKeyRef:
+                  key: bot-admin
+                  name: shadowman-the-bot-secrets
             - name: BOT_NAME
               value: 'shadowman'
             - name: BOT_MENTION_NAME
