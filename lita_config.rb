@@ -1,6 +1,9 @@
+
 Lita.configure do |config|
   # The name your robot will use.
   config.robot.name = ENV['BOT_NAME']
+  config.robot.mention_name = ENV['BOT_MENTION_NAME']
+  config.robot.alias = ENV['BOT_ALIAS']
 
   # The locale code for the language to use.
   # config.robot.locale = :en
@@ -30,7 +33,12 @@ Lita.configure do |config|
   config.redis.host = ENV['REDIS_HOST']
   config.redis.port = ENV['REDIS_PORT']
 
+  # HTTP listener
+  config.http.host = ENV['HTTP_HOST']
+  config.http.port = ENV['HTTP_PORT']
+
   ## Example: Set configuration for any loaded handlers. See the handler's
   ## documentation for options.
   # config.handlers.some_handler.some_config_key = "value"
 end
+

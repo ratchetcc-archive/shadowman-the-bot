@@ -42,14 +42,26 @@ items:
                   
             - name: BOT_NAME
               value: 'shadowman'
+            - name: BOT_MENTION_NAME
+              value: 'shadowman'
+            - name: BOT_ALIAS
+              value: 'shadowman'
 
             - name: REDIS_HOST
               value: 'redis'
             - name: REDIS_PORT
               value: '6379'
+            
+            - name: HTTP_HOST
+              value: '0.0.0.0'
+            - name: HTTP_PORT
+              value: '8080'
 
             - name: LOG_LEVEL
               value: 'info'
+
+            - name: RACK_ENV
+              value: 'production'
 
             image: ''
             name: shadowman-the-bot
