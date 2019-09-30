@@ -42,7 +42,7 @@ items:
             - name: BOT_ADMINS
               valueFrom:
                 secretKeyRef:
-                  key: bot-admin
+                  key: bot-admins
                   name: shadowman-the-bot-secrets
             - name: BOT_NAME
               value: 'shadowman'

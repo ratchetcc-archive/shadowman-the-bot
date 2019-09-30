@@ -55,6 +55,7 @@ oc create -f deployments/deploy-bot.yaml
 * https://github.com/litaio/lita
 * https://github.com/litaio/lita-slack
 * https://docs.lita.io/plugin-authoring/handlers/
+* https://www.rubydoc.info/gems/lita-slack/Lita/Adapters/Slack
 
 ### Containers
 * https://github.com/sclorg/s2i-ruby-container
