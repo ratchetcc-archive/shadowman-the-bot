@@ -7,13 +7,13 @@ items:
     annotations:
       description: Defines how to deploy the application server
       template.alpha.openshift.io/wait-for-ready: 'true'
-    name: shadowman-the-bot
+    name: shtb-bot
     labels:
-      app: shadowman-the-bot
+      app: shtb-bot
   spec:
     replicas: 1
     selector:
-      name: shadowman-the-bot
+      name: shtb-bot
     strategy:
       type: Rolling
       #rollingParams:
@@ -27,10 +27,10 @@ items:
         
     template:
       metadata:
-        name: shadowman-the-bot
+        name: shtb-bot
         labels:
-          name: shadowman-the-bot
-          app: shadowman-the-bot
+          name: shtb-bot
+          app: shtb-bot
       spec:
         containers:
           - env:            
@@ -68,7 +68,7 @@ items:
               value: 'production'
 
             image: ''
-            name: shadowman-the-bot
+            name: shtb-bot
             ports:
               - containerPort: 8080
 
@@ -88,17 +88,17 @@ items:
             #
             resources:
               limits:
-                memory: '512Mi'
+                memory: '256Mi'
 
     triggers:
       - type: ConfigChange
       - imageChangeParams:
           automatic: true
           containerNames:
-            - shadowman-the-bot
+            - shtb-bot
           from:
             kind: ImageStreamTag
-            name: 'shadowman-the-bot:latest'
+            name: 'shtb-bot:latest'
         type: ImageChange
 
 - apiVersion: v1
@@ -106,29 +106,17 @@ items:
   metadata:
     annotations:
       description: Exposes and load balances the application pods
-      service.alpha.openshift.io/dependencies: '[{"name": "${DATABASE_SERVICE_NAME}", "kind": "Service"}]'
-    name: shadowman-the-bot
+      #service.alpha.openshift.io/dependencies: '[{"name": "${DATABASE_SERVICE_NAME}", "kind": "Service"}]'
+    name: shtb-bot
     labels:
-      app: shadowman-the-bot
+      app: shtb-bot
   spec:
     ports:
-      - name: web
+      - name: bot
         port: 8080
         targetPort: 8080
     selector:
-      name: shadowman-the-bot
-
-- apiVersion: v1
-  kind: Route
-  metadata:
-    name: www
-    labels:
-      app: shadowman-the-bot
-  spec:
-    #host: 'www.example.com'
-    to:
-      kind: Service
-      name: shadowman-the-bot
+      name: shtb-bot
       
 kind: List
 metadata: []

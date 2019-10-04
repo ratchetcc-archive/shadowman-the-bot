@@ -61,3 +61,7 @@ oc create -f deployments/deploy-bot.yaml
 * https://github.com/sclorg/s2i-ruby-container
 * https://access.redhat.com/containers/?tab=overview&get-method=registry-tokens#/registry.access.redhat.com/rhscl/redis-5-rhel7
 * https://hub.docker.com/_/redis/?tab=description
+
+### Development
+
+* https://github.com/joeferner/redis-commander

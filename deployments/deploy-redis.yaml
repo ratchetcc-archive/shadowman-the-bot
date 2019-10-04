@@ -9,7 +9,7 @@ items:
       template.alpha.openshift.io/wait-for-ready: 'true'
     name: 'redis'
     labels:
-      app: shadowman-the-bot
+      app: shtb-bot
   spec:
     replicas: 1
     selector:
@@ -38,7 +38,7 @@ items:
 
             resources:
               limits:
-                memory: '512Mi'
+                memory: '256Mi'
             
             volumeMounts:
               - mountPath: /var/lib/redisdata
@@ -66,7 +66,7 @@ items:
       description: Exposes the database server
     name: 'redis'
     labels:
-      app: shadowman-the-bot
+      app: shtb-bot
   spec:
     ports:
       - name: 'db'
@@ -79,6 +79,8 @@ items:
   apiVersion: "v1"
   metadata:
     name: 'redis'
+    labels:
+      app: shtb-bot
   spec:
     accessModes:
       - ReadWriteOnce

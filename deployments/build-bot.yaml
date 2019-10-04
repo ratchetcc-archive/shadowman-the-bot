@@ -6,18 +6,18 @@ items:
   apiVersion: 'v1'
   metadata:
     annotations:
-      description: shadowman-the-bot bot
+      description: shadowman-the-bot slack bot
       tags: ruby, slack
+    name: shtb-bot
     labels:
-      app: shadowman-the-bot
-    name: shadowman-the-bot
+      app: shtb-bot
 
 - kind: BuildConfig
   apiVersion: 'v1'
   metadata:
+    name: shtb-bot
     labels:
-      app: shadowman-the-bot
-    name: shadowman-the-bot
+      app: shtb-bot
   spec:
     successfulBuildsHistoryLimit: 2
     failedBuildsHistoryLimit: 1
@@ -25,10 +25,10 @@ items:
     
     triggers:
     - github:
-        secret: shadowman-the-bot
+        secret: shtb-bot
       type: GitHub
     - generic:
-        secret: shadowman-the-bot
+        secret: shtb-bot
       type: Generic
     - type: ConfigChange
     - imageChange: {}
@@ -66,4 +66,4 @@ items:
     output:
       to:
         kind: ImageStreamTag
-        name: 'shadowman-the-bot:latest'
+        name: 'shtb-bot:latest'
