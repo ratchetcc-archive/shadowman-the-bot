@@ -35,3 +35,6 @@ docker start shadow-redis
 ### Development
 
 * https://github.com/joeferner/redis-commander
+
+heroku create shtb-bot --region eu
+heroku addons:create heroku-redis:hobby-dev --app shtb-bot

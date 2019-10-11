@@ -26,16 +26,20 @@ Lita.configure do |config|
   config.adapters.slack.token = ENV['SLACK_TOKEN']
   config.robot.admins = ENV['BOT_ADMINS'].split(',')
   
+  config.redis[:url] = ENV["REDIS_URL"]
+  config.http.port = ENV["PORT"]
+  
   ## Example: Set options for the chosen adapter.
   # config.adapter.username = "myname"
   # config.adapter.password = "secret"
 
-  config.redis.host = ENV['REDIS_HOST']
-  config.redis.port = ENV['REDIS_PORT']
+  #config.redis.host = ENV['REDIS_HOST']
+  #config.redis.port = ENV['REDIS_PORT']
+  #config.redis.host = ENV['REDIS_HOST']
 
   # HTTP listener
-  config.http.host = ENV['HTTP_HOST']
-  config.http.port = ENV['HTTP_PORT']
+  #config.http.host = ENV['HTTP_HOST']
+  #config.http.port = ENV['HTTP_PORT']
 
   ## Example: Set configuration for any loaded handlers. See the handler's
   ## documentation for options.
